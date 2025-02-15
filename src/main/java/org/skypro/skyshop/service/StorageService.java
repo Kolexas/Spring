@@ -17,8 +17,8 @@ public class StorageService {
     private final Map<UUID, Article> storageOfArticle;
 
     public StorageService(Map<UUID, Product> storageOfProducts, Map<UUID, Article> storageOfArticle) {
-        this.storageOfProducts = storageOfProducts;
-        this.storageOfArticle = storageOfArticle;
+        this.storageOfProducts = new HashMap<>();
+        this.storageOfArticle = new HashMap<>();
         this.addProductsAndArticles();
     }
 
@@ -32,11 +32,16 @@ public class StorageService {
     }
 
     private void addProductsAndArticles() {
-        storageOfProducts.put(UUID.randomUUID(), new SimpleProduct("Банан", 150, UUID.randomUUID()));
-        storageOfProducts.put(UUID.randomUUID(), new SimpleProduct("Клубника", 300, UUID.randomUUID()));
-        storageOfProducts.put(UUID.randomUUID(), new FixPriceProduct("Малина", UUID.randomUUID()));
-        storageOfProducts.put(UUID.randomUUID(), new DiscountedProduct("Колбаса", 10, 600, UUID.randomUUID()));
-        storageOfArticle.put(UUID.randomUUID(), new Article("Вино", "из Грузии", UUID.randomUUID()));
+        Product banana = new SimpleProduct("Банан", 150, UUID.randomUUID());
+        Product strawberry = new SimpleProduct("Клубника", 300, UUID.randomUUID());
+        Product raspberry = new FixPriceProduct("Малина", UUID.randomUUID());
+        Product meat = new DiscountedProduct("Колбаса", 10, 600, UUID.randomUUID());
+        Article vine = new Article("Вино", "из Грузии", UUID.randomUUID());
+        storageOfProducts.put(banana.getId(), banana);
+        storageOfProducts.put(strawberry.getId(), strawberry);
+        storageOfProducts.put(raspberry.getId(), raspberry);
+        storageOfProducts.put(meat.getId(), meat);
+        storageOfArticle.put(vine.getId(), vine);
     }
 
     public Map<UUID, Searchable> getSearchables() {
